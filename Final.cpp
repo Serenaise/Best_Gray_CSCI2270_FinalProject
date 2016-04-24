@@ -1,5 +1,6 @@
 #include <iostream>
 #include "HashTable.h"
+#include "stdlib.h"
 
 using namespace std;
 
@@ -21,7 +22,9 @@ int main()
       cout << "Enter title:" << endl;
       cin.ignore();
       getline(cin, title);
-      h.insertSum(title);  //Changed to insertSum for testing purposes
+      uint32_t res[5];
+      h.SHA1(title,res);  //Changed to insertSum for testing purposes
+      cout << res[0] << endl;
     }
     else if (C == 2)
     {
@@ -43,11 +46,14 @@ int main()
     }
     else if (C == 5){
       string newsize;
-      cout << "This will delete everything in the array" << endl;
+      cout << "This will delete everything in the array" << endl;/*Might want to add option to bail on changing tableSize*/
       cout << "Please enter a new table size:" << endl;
       cin.ignore();
       getline(cin, newsize);
-      h.setTableSize(stoi(newsize));
+      /*I changed this next comand from stoi becuase that doesn't work on my computer.
+      Make sure the string is a valid integer.  Add end pointer (instead of NULL) to make sure that the whole string was used in conversion.
+      To force to be base 10 make the last argument 10*/
+      h.setTableSize(strtol(newsize.c_str(),NULL,0));
     }
     else if (C == 6)
     {
