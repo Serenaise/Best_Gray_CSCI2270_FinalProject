@@ -203,6 +203,10 @@ int HashTable::hashMultiply(string k, int sz)
 }
 /*This function does not work*/
 void HashTable::SHA1(string message, uint32_t hh[5])
+/*
+SHA1("")
+gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709
+*/
 {
   union {
     uint64_t Int64;
@@ -254,11 +258,11 @@ void HashTable::SHA1(string message, uint32_t hh[5])
     /*uint32_t *wordptr;
     wordptr = (uint32_t*)&ChunkV[x][0];
     w[i] = *wordptr;*/
-    for(int i = 0; i < 16; ++i)
+    for(int i = 0,j = 0; i < 64; i += 4, j++)
     {
-      w[i] = 0;
-      w[i] = ((uint32_t)ChunkV[x][i]) << 24 | ((uint32_t)ChunkV[x][i + 1]) << 16 | ((uint32_t)ChunkV[x][i + 2]) << 8 | ((uint32_t)ChunkV[x][i + 3]);
-      w[i] = htobe32(w[i]);
+      w[j] = 0;
+      w[j] = ((uint32_t)ChunkV[x][i]) << 24 | ((uint32_t)ChunkV[x][i + 1]) << 16 | ((uint32_t)ChunkV[x][i + 2]) << 8 | ((uint32_t)ChunkV[x][i + 3]);
+      w[j] = htobe32(w[j]);
     }
     for (int i = 16; i < 80; i++)
     {
