@@ -225,20 +225,26 @@ void HashTable::SHA1(string message, uint32_t hh[5])
       uint64_t Int64;
       char Chars[sizeof(uint64_t)];
     } var;
+    /*unsigned 32 bit nothing up my sleave ints*/
     uint32_t h0 = 0x67452301;
     uint32_t h1 = 0xEFCDAB89;
     uint32_t h2 = 0x98BADCFE;
     uint32_t h3 = 0x10325476;
     uint32_t h4 = 0xC3D2E1F0;
-    uint64_t ml = (message.length())*8;/*The message length in bits*/
+    /*The message length in bits*/
+    uint64_t ml = (message.length())*8;
+    /*Append the bit '1' to the message*/
     message.push_back(0x80);
+    /*Append '0' until the message length mod 512 is 448*/
     while ((message.length()*8)%512 != 448)
     {
       //cout << "Before: " << message.length() << endl;
       message.push_back(0x00);
       //cout << "After: " << message.length() << endl;
     }
+    /*Convert message length from host to big endian*/
     ml = htobe64(ml);
+    /*Append the original message size to the end of the message*/
     var.Int64 = ml;
     for(int i = 0; i < sizeof(uint64_t); ++i)
     {
