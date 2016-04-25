@@ -31,7 +31,8 @@ int main()
       uint32_t res[5];
       h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
       //h.SHA1(title,res);  //Changed to insertSum for testing purposes
-      cout << res[0] << endl;
+      //cout << res[0] << endl;
+      cout << "Number of collisions: " << h.getCollisions() << endl;
     }
     else if (C == 2)
     {
@@ -80,7 +81,7 @@ int menu()
   cout << "4. Print table contents" << endl;
   cout << "5. Change table size" << endl;
   cout << "6. Quit" << endl;
-  cin >> choice;
+  //cin >> choice;
   if(cin >> choice && choice <= 6 && choice > 0){
   return choice;
 }
@@ -89,7 +90,6 @@ else{
   cin.clear();
   while (cin.get() != '\n') ;
 }
-}
 
-  return choice;
+  //return choice;
 }

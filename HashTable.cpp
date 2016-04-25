@@ -398,6 +398,7 @@ void HashTable::insertScrabble(string name)
   }
   else
   {
+    collisions += 1;
     current = hashTable[index];
     while (current -> next != NULL)
     {
