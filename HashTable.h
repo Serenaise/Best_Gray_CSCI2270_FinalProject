@@ -2,6 +2,7 @@
 #define HASHTABLE_H
 #include <string>
 #include <vector>
+#include <stdint.h>
 
 struct HashElem{
 	std::string title;
