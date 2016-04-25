@@ -81,8 +81,15 @@ int menu()
   cout << "5. Change table size" << endl;
   cout << "6. Quit" << endl;
   cin >> choice;
-  if(choice > 6){
-    throw "Invalid input, please choose an item from the menu by typing the number next to your choice";
-  }
+  if(cin >> choice && choice <= 6 && choice > 0){
+  return choice;
+}
+else{
+  cout << "Not a valid input.  Please input the number next to the menu item you wish to select" << endl;
+  cin.clear();
+  while (cin.get() != '\n') ;
+}
+}
+
   return choice;
 }
