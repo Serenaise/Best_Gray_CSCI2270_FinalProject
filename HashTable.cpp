@@ -202,11 +202,11 @@ int HashTable::hashMultiply(string k, int sz)
   return intpart;
 }
 /*This function does not work*/
-void HashTable::SHA1(string message, uint32_t hh[5])
-/*
+/*void HashTable::SHA1(string message, uint32_t hh[5])
+
 SHA1("")
 gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709
-*/
+
 {
   union {
     uint64_t Int64;
@@ -217,8 +217,8 @@ gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709
   uint32_t h2 = 0x98BADCFE;
   uint32_t h3 = 0x10325476;
   uint32_t h4 = 0xC3D2E1F0;
-  uint64_t ml = (message.length())*8;/*The message length in bits*/
-  message.push_back(0x80);
+  uint64_t ml = (message.length())*8;*//*The message length in bits*/
+  /*message.push_back(0x80);
   while ((message.length()*8)%512 != 448)
   {
     cout << "Before: " << message.length() << endl;
@@ -254,11 +254,11 @@ gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709
   }
   for(int x = 0; x < ChunkV.size(); ++x)
   {
-    uint32_t w[80];
+    uint32_t w[80];*/
     /*uint32_t *wordptr;
     wordptr = (uint32_t*)&ChunkV[x][0];
     w[i] = *wordptr;*/
-    for(int i = 0,j = 0; i < 64; i += 4, j++)
+    /*for(int i = 0,j = 0; i < 64; i += 4, j++)
     {
       w[j] = 0;
       w[j] = ((uint32_t)ChunkV[x][i]) << 24 | ((uint32_t)ChunkV[x][i + 1]) << 16 | ((uint32_t)ChunkV[x][i + 2]) << 8 | ((uint32_t)ChunkV[x][i + 3]);
@@ -339,4 +339,57 @@ uint32_t HashTable::leftRotate(uint32_t val, int itt)
     return val;
   }
 
+}*/
+
+
+int HashTable::hashScrabble(std::string str, int sz){
+  int sum = 0;
+  for(int i = 0; i < str.size(); i++){
+    char c = tolower(str[i]);
+    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+        || c == 'l' || c == 'n' || c == 's' || c == 'r'){
+          sum+=1;
+        }
+    else if(c == 'd' || c == 'g'){
+      sum += 2;
+    }
+    else if(c == 'b' || c == 'c' || c == 'm' || c == 'p'){
+      sum += 3;
+    }
+    else if(c == 'f' || c == 'h' || c == 'v' || c == 'w' || c == 'y'){
+      sum += 4;
+    }
+    else if(c == 'k'){
+      sum += 5;
+    }
+    else if(c == 'j' || c == 'x'){
+      sum += 8;
+    }
+    else if(c == 'q' || c == 'z'){
+      sum += 10;
+    }
+  }
+  sum = sum % tableSize;
+  return sum;
+}
+
+void HashTable::insertScrabble(string name)
+{
+  int index = hashScrabble(name, tableSize);
+  HashElem *current;
+  HashElem *elk = new HashElem(name);
+  if (hashTable[index] == NULL)
+  {
+    hashTable[index] = elk;
+  }
+  else
+  {
+    current = hashTable[index];
+    while (current -> next != NULL)
+    {
+      current = current -> next;
+    }
+    current -> next = elk;
+    elk -> previous = current;
+  }
 }

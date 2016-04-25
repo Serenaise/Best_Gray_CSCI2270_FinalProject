@@ -29,6 +29,7 @@ class HashTable
 		void insertSum(std::string name);
 		void insertMul(std::string name);
 		void insertRandSum(std::string name);
+		void insertScrabble(std::string);
 		void SHA1(std::string name, uint32_t hh[5]);
 		void deleteSum(std::string name);
 		void deleteMul(std::string name);
@@ -39,6 +40,7 @@ class HashTable
 		int hashSum(std::string x, int s);
 		int hashMultiply(std::string k, int sz);
 		int hashRandSum(std::string str, int sz);
+		int hashScrabble(std::string str, int sz);
 		uint32_t leftRotate(uint32_t val, int itt);
 		//int SHA1(std::string name);/*This one only needs the name and it returns a hexidecimal.*/
 		int tableSize;
