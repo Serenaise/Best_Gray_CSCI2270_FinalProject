@@ -18,9 +18,10 @@ HashTable::~HashTable()
   delete hashTable;
   //dtor
 }
-/*I think that most of these functions should work but I'm not sure.
-They almost certaintly need work.*/
-
+int HashTable::getCollisions()
+{
+  return collisions;
+}
 //added hashTable declaration here, still needs to delete each element of array
 void HashTable::initToNull()
 {
@@ -201,7 +202,19 @@ int HashTable::hashMultiply(string k, int sz)
   intpart = floor(intpart);
   return intpart;
 }
-
+int HashTable::hashRandSum(std::string str, int sz)
+{
+  int sum = 0;
+  int Rand = 0;
+  for (int i = 0; i < str.size(); i++)
+  {
+    srand(Rand + str[i]);
+    sum = rand();
+  }
+  cout << sum << endl;
+  sum = sum % sz;
+  return sum;
+}
 /*This DOES NOT break.  Don't do anything to it!*/
 void HashTable::SHA1(string message, uint32_t hh[5])
 {
