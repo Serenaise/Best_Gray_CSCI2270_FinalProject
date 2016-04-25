@@ -23,7 +23,8 @@ int main()
       cin.ignore();
       getline(cin, title);
       uint32_t res[5];
-      h.SHA1(title,res);  //Changed to insertSum for testing purposes
+      h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
+      //h.SHA1(title,res);  //Changed to insertSum for testing purposes
       cout << res[0] << endl;
     }
     else if (C == 2)
@@ -60,6 +61,7 @@ int main()
       quit = true;
       cout << "Goodbye!" << endl;
     }
+    /* This creates a neverending loop if it runs*/
     else
     {
       cout << "Not a valid input" << endl;
