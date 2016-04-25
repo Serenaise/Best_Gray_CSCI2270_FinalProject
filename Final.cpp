@@ -16,7 +16,13 @@ int main()
   //h.initToNull();
   while (!quit)
   {
-    C = menu();
+    C = 0;
+    try{
+      C = menu();
+    }
+    catch(const char* msg){
+      cerr << msg << endl;
+    }
     if (C == 1)
     {
       cout << "Enter title:" << endl;
@@ -61,11 +67,6 @@ int main()
       quit = true;
       cout << "Goodbye!" << endl;
     }
-    /* This creates a neverending loop if it runs*/
-    else
-    {
-      cout << "Not a valid input" << endl;
-    }
   }
   return 0;
 }
@@ -80,5 +81,8 @@ int menu()
   cout << "5. Change table size" << endl;
   cout << "6. Quit" << endl;
   cin >> choice;
+  if(choice > 6){
+    throw "Invalid input, please choose an item from the menu by typing the number next to your choice";
+  }
   return choice;
 }
