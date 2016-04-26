@@ -29,9 +29,9 @@ int main()
       cin.ignore();
       getline(cin, title);
       uint32_t res[5];
-      h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
-      //h.SHA1(title,res);  //Changed to insertSum for testing purposes
-      //cout << res[0] << endl;
+      //h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
+      h.SHA1(title,res);
+      cout << res[0] << res[1] << res[2] << res[3] << res[4] << endl;
       cout << "Number of collisions: " << h.getCollisions() << endl;
     }
     else if (C == 2)
