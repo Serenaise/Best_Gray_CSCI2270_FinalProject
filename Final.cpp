@@ -1,6 +1,8 @@
 #include <iostream>
 #include "HashTable.h"
 #include "stdlib.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -25,14 +27,52 @@ int main()
     }
     if (C == 1)
     {
-      cout << "Enter title:" << endl;
-      cin.ignore();
-      getline(cin, title);
-      uint32_t res[5];
-      //h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
-      h.SHA1(title,res);
-      cout << res[0] << res[1] << res[2] << res[3] << res[4] << endl;
-      cout << "Number of collisions: " << h.getCollisions() << endl;
+      int choice = 0;
+      bool entered = false;
+      while(!entered){
+        cout << "Choose whether to input a file or a single input" << endl;
+        cout << "1. Single input" << endl;
+        cout << "2. Enter file" << endl;
+        cin >> choice;
+        if(choice == 1){
+          cout << "Enter title:" << endl;
+
+          cin.ignore();
+          getline(cin, title);
+          //uint32_t res[5];
+          h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
+          //h.SHA1(title,res);
+          //cout << res[0] << res[1] << res[2] << res[3] << res[4] << endl;
+          cout << "Number of collisions: " << h.getCollisions() << endl;
+          entered = true;
+        }
+        else if(choice == 2){
+          //insert code to read in file here
+          string filename;
+          cout << "Please input the name of the file" << endl;
+          cin >> filename;
+          if (FILE *file = fopen(filename.c_str(), "r")) {
+            cin.ignore();
+            string word;
+            ifstream fin(filename);
+            while(fin >> word){
+              h.insertScrabble(word);
+            }
+            fclose(file);
+            cout << "Number of collisions:" << h.getCollisions() << endl;
+            entered = true;
+          }
+          else {
+            cout << "Bad file name" << endl;
+            entered = true;
+          }
+        }
+        else{
+          cout << "Invalid input, please try again" << endl;
+          cin.clear();
+          while (cin.get() != '\n') ;
+        }
+      }
     }
     else if (C == 2)
     {
@@ -63,7 +103,10 @@ int main()
       To force to be base 10 make the last argument 10*/
       h.setTableSize(strtol(newsize.c_str(),NULL,0));
     }
-    else if (C == 6)
+    else if (C == 6){
+      cout << "Choose a new hash function.  This will remove everything from the current array" << endl;
+    }
+    else if (C == 7)
     {
       quit = true;
       cout << "Goodbye!" << endl;
@@ -80,9 +123,10 @@ int menu()
   cout << "3. Find movie" << endl;
   cout << "4. Print table contents" << endl;
   cout << "5. Change table size" << endl;
-  cout << "6. Quit" << endl;
+  cout << "6. Change hash function" << endl;
+  cout << "7. Quit" << endl;
   //cin >> choice;
-  if(cin >> choice && choice <= 6 && choice > 0){
+  if(cin >> choice && choice <= 7 && choice > 0){
   return choice;
 }
 else{
