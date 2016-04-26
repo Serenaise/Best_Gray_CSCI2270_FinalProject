@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -231,7 +232,7 @@ void HashTable::SHA1(string message, uint32_t hh[5])
     uint32_t h2 = 0x98BADCFE;
     uint32_t h3 = 0x10325476;
     uint32_t h4 = 0xC3D2E1F0;
-    /*The message length in bits*/
+    /*The message length in bits. Stored as host endian*/
     uint64_t ml = (message.length())*8;
     /*Append the bit '1' to the message*/
     message.push_back(0x80);
@@ -245,9 +246,10 @@ void HashTable::SHA1(string message, uint32_t hh[5])
     /*Convert message length from host to big endian*/
     ml = htobe64(ml);
     /*Append the original message size to the end of the message*/
-    var.Int64 = ml;
+    var.Int64 = htobe64(ml);
     for(int i = 0; i < sizeof(uint64_t); ++i)
     {
+      /*Push in big endian order*/
       message.push_back(var.Chars[i]);
     }
     vector <vector <uint8_t> > ChunkV;
@@ -281,7 +283,7 @@ void HashTable::SHA1(string message, uint32_t hh[5])
       {
         w[j] = 0;
         w[j] = ((uint32_t)ChunkV[x][i]) << 24 | ((uint32_t)ChunkV[x][i + 1]) << 16 | ((uint32_t)ChunkV[x][i + 2]) << 8 | ((uint32_t)ChunkV[x][i + 3]);
-        w[j] = htobe32(w[j]);
+        //w[j] = htobe32(w[j]);
       }
       for (int i = 16; i < 80; i++)
       {
@@ -297,22 +299,22 @@ void HashTable::SHA1(string message, uint32_t hh[5])
       uint32_t temp;
       for (int i = 0; i < 80; ++i)
       {
-        if (0 <= i <= 19)
+        if (0 <= i && i <= 19)
         {
           f = (b & c) | ((~b) & d);
           k = 0x5A827999;
         }
-        else if (20 <= i <= 39)
+        else if (20 <= i && i <= 39)
         {
           f = b ^ c ^ d;
           k = 0x6ED9EBA1;
         }
-        else if (40 <= i <= 59)
+        else if (40 <= i && i <= 59)
         {
           f = (b & c) | (b & d) | (c & d);
           k = 0x8F1BBCDC;
         }
-        else if (60 <= i <= 79)
+        else if (60 <= i && i <= 79)
         {
           f = b ^ c ^ d;
           k = 0xCA62C1D6;
@@ -324,19 +326,19 @@ void HashTable::SHA1(string message, uint32_t hh[5])
       c = leftRotate(b,30);
       b = a;
       a = temp;
+      }
       h0 = h0 + a;
       h1 = h1 + b;
       h2 = h2 + c;
       h3 = h3 + d;
       h4 = h4 + e;
-      }
     }
-    hh[5];
-    hh[0] = h0;
-    hh[1] = h1;
-    hh[2] = h2;
-    hh[3] = h3;
-    hh[4] = h4;
+    //hh[5];
+    hh[0] = htobe32(h0);
+    hh[1] = htobe32(h1);
+    hh[2] = htobe32(h2);
+    hh[3] = htobe32(h3);
+    hh[4] = htobe32(h4);
   }
 }
 /*Also works fine*/
