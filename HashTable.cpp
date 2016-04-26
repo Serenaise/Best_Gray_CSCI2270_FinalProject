@@ -358,7 +358,7 @@ uint32_t HashTable::leftRotate(uint32_t val, int itt)
     {
       val &= 0xFFFFFFFE;
     }
-    val = htobe32(val);
+    //val = htobe32(val);
     return val;
   }
 
