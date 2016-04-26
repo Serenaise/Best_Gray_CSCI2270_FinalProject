@@ -42,7 +42,7 @@ int main()
           //uint32_t res[5];
           h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
           //h.SHA1(title,res);
-          //cout << res[0] << res[1] << res[2] << res[3] << res[4] << endl;
+          //cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
           cout << "Number of collisions: " << h.getCollisions() << endl;
           entered = true;
         }
