@@ -201,10 +201,58 @@ void HashTable::deleteMul(std::string name)
     }
   }
 }
-void HashTable::find(std::string name)
+void HashTable::findSum(std::string name)
 {
   HashElem *current = NULL;
   int index = hashSum(name, tableSize);
+  current = hashTable[index];
+  while (current -> title != name)
+  {
+    current = current -> next;
+  }
+  if (current -> title == name)
+  {
+    cout << index << ":" << current -> title << endl;
+    return;
+  }
+  cout << "not found" << endl;
+}
+void HashTable::findMul(std::string name)
+{
+  HashElem *current = NULL;
+  int index = hashMul(name, tableSize);
+  current = hashTable[index];
+  while (current -> title != name)
+  {
+    current = current -> next;
+  }
+  if (current -> title == name)
+  {
+    cout << index << ":" << current -> title << endl;
+    return;
+  }
+  cout << "not found" << endl;
+}
+void HashTable::findRandSum(std::string name)
+{
+  HashElem *current = NULL;
+  int index = hashRandSum(name, tableSize);
+  current = hashTable[index];
+  while (current -> title != name)
+  {
+    current = current -> next;
+  }
+  if (current -> title == name)
+  {
+    cout << index << ":" << current -> title << endl;
+    return;
+  }
+  cout << "not found" << endl;
+}
+void HashTable::findScrabble(std::string name)
+{
+  HashElem *current = NULL;
+  int index = hashScrabble(name, tableSize);
   current = hashTable[index];
   while (current -> title != name)
   {
