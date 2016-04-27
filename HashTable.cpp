@@ -132,13 +132,14 @@ void HashTable::deleteRandSum(std::string name)
     while (current -> title != name && current -> next != NULL)
     {
       current = current -> next;
-    }
+
     if (current -> title == name)
     {
       current -> previous -> next = current -> next;
       current -> next -> previous = current -> previous;
       delete current;
     }
+  }
   }
 }
 void HashTable::deleteSum(std::string name)
@@ -162,13 +163,13 @@ void HashTable::deleteSum(std::string name)
     while (current -> title != name && current -> next != NULL)
     {
       current = current -> next;
-    }
     if (current -> title == name)
     {
       current -> previous -> next = current -> next;
       current -> next -> previous = current -> previous;
       delete current;
     }
+  }
   }
 }
 void HashTable::deleteMul(std::string name)
@@ -192,13 +193,13 @@ void HashTable::deleteMul(std::string name)
     while (current -> title != name && current -> next != NULL)
     {
       current = current -> next;
-    }
     if (current -> title == name)
     {
       current -> previous -> next = current -> next;
       current -> next -> previous = current -> previous;
       delete current;
     }
+  }
   }
 }
 void HashTable::findSum(std::string name)
@@ -558,12 +559,12 @@ void HashTable::deleteScrabble(std::string name)
     while (current -> title != name && current -> next != NULL)
     {
       current = current -> next;
-    }
     if (current -> title == name)
     {
       current -> previous -> next = current -> next;
       current -> next -> previous = current -> previous;
       delete current;
     }
+  }
   }
 }
