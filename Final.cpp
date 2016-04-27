@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include "Debug.h"
+#include <stdio.h>
 
 using namespace std;
 
@@ -57,8 +58,9 @@ int main()
           }
           else{
 			uint32_t res[5];
-            /*h.SHA1(title,res);
-            cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
+            h.SHA1(title,res);
+            printf("%08x%08x%08x%08x%08x\n",res[0], res[1], res[2], res[3], res[4]);
+            /*cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
              // LCB: Debug.
          printf("res (as uint8_t):\n");
          HexDump(stdout, (uint8_t *) res, 20);

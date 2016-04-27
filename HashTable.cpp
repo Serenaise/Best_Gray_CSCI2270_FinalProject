@@ -370,19 +370,19 @@ void HashTable::SHA1(string message, uint32_t hh[5])
       h4 = h4 + e;
     }
     //hh[5];
-    hh[0] = htobe32(h0);
+    /*hh[0] = htobe32(h0);
     hh[1] = htobe32(h1);
     hh[2] = htobe32(h2);
     hh[3] = htobe32(h3);
-    hh[4] = htobe32(h4);
-    /*hh[0] = h0;
+    hh[4] = htobe32(h4);*/
+    hh[0] = h0;
     hh[1] = h1;
     hh[2] = h2;
     hh[3] = h3;
-    hh[4] = h4;*/
-    printf("hh (as uint8_t):\n");
+    hh[4] = h4;
+    /*printf("hh (as uint8_t):\n");
     HexDump(stdout, (uint8_t *) hh, 20);/*from Debug.h should be taken out at some point*/
-    printf("\n");
+    /*printf("\n");*/
   }
 }
 /*Also works fine*/
