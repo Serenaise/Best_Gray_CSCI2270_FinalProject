@@ -2,9 +2,22 @@
 
 Data Structures project
 
-We plan to make a hash table with multiple hash functions. The user will choose which hash function to use. The user will have options like functions using multiplication, random numbers, and division. The goal is to test which hash function leads to the fewest collisions.
+Project Summary
+We made a hash table with multiple hash functions. The user chooses which hash function to use. The user has options of functions using multiplication, random numbers, summation, scrabble, and SHA1. The goal is to test which hash function leads to the fewest collisions.
 
-Collaborators: Katherine Best and Kathryn Gray
+How To Run
+Download/ Pull the Makefile, Final.cpp, HashTable.cpp, and HashTable.h and run the make file ('make Final' in the Linux terminal emulator).  Please note that the makefile is not automatically included in git pull.  The program should prompt the user for input and the user should provide the requested information via the via the infreface with the terminal (that is, the user puts input into the terminal).
 
-Notes:
+Dependencies
+None
+
+System Requirements
 May only work on Linux.  Has not been tested on Mac or Windows.
+
+Group Members
+Katherine Best and Kathryn Gray
+
+Open Issues/Bugs
+Collision count remains unchanged when items are deleted
+The find code should check for valid input and the delete code may not be working correctly.
+
