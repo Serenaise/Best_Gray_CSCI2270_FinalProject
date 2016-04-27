@@ -126,6 +126,7 @@ void HashTable::deleteRandSum(std::string name)
     cout << "Here" << endl;
     current = NULL;
     delete current;
+    hashTable[index] = NULL;
   }
   else
   {
@@ -154,9 +155,9 @@ void HashTable::deleteSum(std::string name)
   }
   if (current -> title == name)
   {
-    cout << "Here" << endl;
     current = NULL;
     delete current;
+    hashTable[index] = NULL;
   }
   else
   {
@@ -184,9 +185,9 @@ void HashTable::deleteMul(std::string name)
   }
   if (current -> title == name)
   {
-    cout << "Here" << endl;
     current = NULL;
     delete current;
+    hashTable[index] = NULL;
   }
   else
   {
@@ -553,6 +554,7 @@ void HashTable::deleteScrabble(std::string name)
   {
     current = NULL;
     delete current;
+    hashTable[index] = NULL;
   }
   else
   {
