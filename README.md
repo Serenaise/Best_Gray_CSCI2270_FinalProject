@@ -18,5 +18,5 @@ Group Members:
 Katherine Best and Kathryn Gray
 
 Open Issues/Bugs:
-Collision count remains unchanged when items are deleted and the delete code does not seem to be working.
-Find does not check for invalid input.
+Collision count remains unchanged when items are deleted.
+Find does not check for invalid input or if the thing to find is in the table.  Seg faults.
