@@ -11,8 +11,12 @@ HashTable::HashTable(int _size)
   //ctor
   tableSize = _size;
   collisions = 0;
+  hashTable = new HashElem*[tableSize];
   //hashTable = new HashElem*[tableSize];
-  initToNull();
+  //initToNull();
+  for(int i = 0; i < _size; i++){
+    hashTable[i] = NULL;
+  }
 }
 HashTable::~HashTable()
 {
@@ -29,7 +33,15 @@ void HashTable::initToNull()
   hashTable = new HashElem*[tableSize];
   for(int x = 0; x < tableSize; x++)
   {
-    hashTable[x] = NULL;
+    if(hashTable[x] != NULL){
+      HashElem* current = hashTable[x];
+      while(current->next != NULL){
+        current = current->next;
+        delete current->previous;
+      }
+      delete current;
+      hashTable[x] = NULL;
+    }
   }
 }
 void HashTable::setTableSize(int newsize){
@@ -47,6 +59,7 @@ void HashTable::insertSum(string name)
   }
   else
   {
+    collisions+=1;
     current = hashTable[index];
     while (current -> next != NULL)
     {
@@ -87,6 +100,7 @@ void HashTable::insertMul(string name)
   }
   else
   {
+    collisions+=1;
     current = hashTable[index];
     while (current -> next != NULL)
     {
@@ -237,39 +251,39 @@ int HashTable::hashRandSum(std::string str, int sz)
   return sum;
 }
 /*This DOES NOT break.  Don't do anything to it!*/
-void HashTable::SHA1(string message, uint32_t hh[5])
+/*void HashTable::SHA1(string message, uint32_t hh[5])
 {
-  /*SHA1("")
-  gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709*/
+  //SHA1("")
+  //gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709
   {
     union {
       uint64_t Int64;
       char Chars[sizeof(uint64_t)];
     } var;
-    /*unsigned 32 bit nothing up my sleave ints*/
+    //unsigned 32 bit nothing up my sleave ints
     uint32_t h0 = 0x67452301;
     uint32_t h1 = 0xEFCDAB89;
     uint32_t h2 = 0x98BADCFE;
     uint32_t h3 = 0x10325476;
     uint32_t h4 = 0xC3D2E1F0;
-    /*The message length in bits. Stored as host endian*/
+    //The message length in bits. Stored as host endian
     uint64_t ml = (message.length())*8;
-    /*Append the bit '1' to the message*/
+    //Append the bit '1' to the message
     message.push_back(0x80);
-    /*Append '0' until the message length mod 512 is 448*/
+    //Append '0' until the message length mod 512 is 448
     while ((message.length()*8)%512 != 448)
     {
       //cout << "Before: " << message.length() << endl;
       message.push_back(0x00);
       //cout << "After: " << message.length() << endl;
     }
-    /*Convert message length from host to big endian*/
+    //Convert message length from host to big endian
     ml = htobe64(ml);
-    /*Append the original message size to the end of the message*/
+    //Append the original message size to the end of the message
     var.Int64 = htobe64(ml);
     for(int i = 0; i < sizeof(uint64_t); ++i)
     {
-      /*Push in big endian order*/
+      //Push in big endian order
       message.push_back(var.Chars[i]);
     }
     vector <vector <uint8_t> > ChunkV;
@@ -296,9 +310,9 @@ void HashTable::SHA1(string message, uint32_t hh[5])
     for(int x = 0; x < ChunkV.size(); ++x)
     {
       uint32_t w[80];
-      /*uint32_t *wordptr;
-      wordptr = (uint32_t*)&ChunkV[x][0];
-      w[i] = *wordptr;*/
+      //uint32_t *wordptr;
+      //wordptr = (uint32_t*)&ChunkV[x][0];
+      //w[i] = *wordptr;
       for(int i = 0,j = 0; i < 64; i += 4, j++)
       {
         w[j] = 0;
@@ -365,9 +379,9 @@ void HashTable::SHA1(string message, uint32_t hh[5])
     hh[3] = h3;
     hh[4] = h4;
   }
-}
+}*/
 /*Also works fine*/
-uint32_t HashTable::leftRotate(uint32_t val, int itt)
+/*uint32_t HashTable::leftRotate(uint32_t val, int itt)
 {
   val = be32toh(val);
   bool b;
@@ -387,7 +401,7 @@ uint32_t HashTable::leftRotate(uint32_t val, int itt)
     return val;
   }
 
-}
+}*/
 
 int HashTable::hashScrabble(std::string str, int sz){
   int sum = 0;
@@ -422,15 +436,18 @@ int HashTable::hashScrabble(std::string str, int sz){
 
 void HashTable::insertScrabble(string name)
 {
+  cout << name << endl;
   int index = hashScrabble(name, tableSize);
   HashElem *current;
   HashElem *elk = new HashElem(name);
   if (hashTable[index] == NULL)
   {
     hashTable[index] = elk;
+    cout <<" Null thing" <<  hashTable[index]->title << endl;
   }
   else
   {
+    cout << "here" << hashTable[index]->title << endl;
     collisions += 1;
     current = hashTable[index];
     while (current -> next != NULL)
