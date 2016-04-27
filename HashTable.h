@@ -36,7 +36,10 @@ class HashTable
 		void deleteMul(std::string name);
 		void deleteRandSum(std::string name);
 		void deleteScrabble(std::string name);
-		void find(std::string name);
+		void findSum(std::string name);
+		void findMul(std::string name);
+		void findRandSum(std::string name);
+		void findScrabble(std::string name);
 		void setTableSize(int newsize);//added function so user can set table size
 	private:
 		int hashSum(std::string x, int s);
