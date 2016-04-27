@@ -123,16 +123,16 @@ int main()
       cin.ignore();
       getline(cin, title);
       if(hash == 1){
-        h.deleteSum(word);
+        h.deleteSum(title);
       }
       else if(hash == 2){
-        h.deleteMul(word);
+        h.deleteMul(title);
       }
       else if(hash == 3){
-        h.deleteRandSum(word);
+        h.deleteRandSum(title);
       }
       else if(hash == 4){
-        h.deleteScrabble(word);
+        h.deleteScrabble(title);
       }
       else{
         cout << "You cannot delete from SHA1" << endl;
