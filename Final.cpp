@@ -73,7 +73,7 @@ int main()
           if (FILE *file = fopen(filename.c_str(), "r")) {
             cin.ignore();
             string word;
-            ifstream fin(filename);
+            ifstream fin(filename.c_str());
             while(fin >> word){
               //h.insertScrabble(word);
               if(hash == 1){
