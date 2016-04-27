@@ -251,7 +251,8 @@ int HashTable::hashRandSum(std::string str, int sz)
   return sum;
 }
 /*This DOES NOT break.  Don't do anything to it!*/
-/*void HashTable::SHA1(string message, uint32_t hh[5])
+/*Note:If you need to comment this function out PLEASE PLEASE PLEASE use preprocessor directives.  That is, if0 and endif */
+void HashTable::SHA1(string message, uint32_t hh[5])
 {
   //SHA1("")
   //gives hexadecimal: da39a3ee5e6b4b0d3255bfef95601890afd80709
@@ -379,9 +380,9 @@ int HashTable::hashRandSum(std::string str, int sz)
     hh[3] = h3;
     hh[4] = h4;
   }
-}*/
+}
 /*Also works fine*/
-/*uint32_t HashTable::leftRotate(uint32_t val, int itt)
+uint32_t HashTable::leftRotate(uint32_t val, int itt)
 {
   val = be32toh(val);
   bool b;
@@ -401,7 +402,7 @@ int HashTable::hashRandSum(std::string str, int sz)
     return val;
   }
 
-}*/
+}
 
 int HashTable::hashScrabble(std::string str, int sz){
   int sum = 0;

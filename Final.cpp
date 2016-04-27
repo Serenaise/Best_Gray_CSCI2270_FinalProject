@@ -56,10 +56,12 @@ int main()
             h.insertScrabble(title);
           }
           else{
-            //h.SHA1(title);
+			uint32_t res[5];
+            h.SHA1(title,res);
+            cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
           }
           //uint32_t res[5];
-          //h.insertSum(title); //Not thoroughly tested, but it seems to work..
+          h.insertSum(title); //Not thoroughly tested, but it seems to work..
           //h.SHA1(title,res);
           //cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
           cout << "Number of collisions: " << h.getCollisions() << endl;
