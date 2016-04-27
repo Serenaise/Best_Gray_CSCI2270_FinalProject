@@ -57,8 +57,12 @@ int main()
           }
           else{
 			uint32_t res[5];
-            h.SHA1(title,res);
+            /*h.SHA1(title,res);
             cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
+             // LCB: Debug.
+         printf("res (as uint8_t):\n");
+         HexDump(stdout, (uint8_t *) res, 20);
+         printf("\n");*/
           }
           //uint32_t res[5];
           h.insertSum(title); //Not thoroughly tested, but it seems to work..
