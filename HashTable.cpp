@@ -411,15 +411,18 @@ int HashTable::hashScrabble(std::string str, int sz){
 
 void HashTable::insertScrabble(string name)
 {
+  cout << name << endl;
   int index = hashScrabble(name, tableSize);
   HashElem *current;
   HashElem *elk = new HashElem(name);
   if (hashTable[index] == NULL)
   {
     hashTable[index] = elk;
+    cout <<" Null thing" <<  hashTable[index]->title << endl;
   }
   else
   {
+    cout << "here" << hashTable[index]->title << endl;
     collisions += 1;
     current = hashTable[index];
     while (current -> next != NULL)

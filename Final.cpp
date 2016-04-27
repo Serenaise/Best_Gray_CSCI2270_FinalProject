@@ -74,19 +74,18 @@ int main()
             string word;
             ifstream fin(filename);
             while(fin >> word){
-              cout << word << endl;
               //h.insertScrabble(word);
               if(hash == 1){
-                h.insertSum(title);
+                h.insertSum(word);
               }
               else if(hash == 2){
-                h.insertMul(title);
+                h.insertMul(word);
               }
               else if(hash == 3){
                 //h.insertRandSum(title);
               }
               else if(hash == 4){
-                h.insertScrabble(title);
+                h.insertScrabble(word);
               }
               else{
                 //h.SHA1(title);
