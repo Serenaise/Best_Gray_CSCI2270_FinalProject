@@ -99,7 +99,6 @@ int main()
               else{
                 uint32_t array[5];
                 h.SHA1(word, array);
-                printf("%08x%08x%08x%08x%08x\n",res[0], res[1], res[2], res[3], res[4]);
               }
             }
             fclose(file);
@@ -144,7 +143,21 @@ int main()
       cout << "Enter title:" << endl;
       cin.ignore();
       getline(cin, title);
-      h.find(title);
+      if(hash == 1){
+        h.findSum(title);
+      }
+      else if(hash == 2){
+        h.findMul(title);
+      }
+      else if(hash == 3){
+        h.findRandSum(title);
+      }
+      else if(hash == 4){
+        h.findScrabble(title);
+      }
+      else{
+        cout << "The results are not stored in a hash table, so cannot be found" << endl;
+      }
     }
     else if (C == 4)
     {
