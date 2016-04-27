@@ -372,7 +372,7 @@ int HashTable::hashRandSum(std::string str, int sz)
     {
       val &= 0xFFFFFFFE;
     }
-    val = htobe32(val);
+    //val = htobe32(val);
     return val;
   }
 
