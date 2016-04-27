@@ -99,6 +99,7 @@ int main()
               else{
                 uint32_t array[5];
                 h.SHA1(word, array);
+                printf("%08x%08x%08x%08x%08x\n",res[0], res[1], res[2], res[3], res[4]);
               }
             }
             fclose(file);
