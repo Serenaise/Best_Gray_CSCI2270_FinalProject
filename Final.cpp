@@ -122,7 +122,21 @@ int main()
       cout << "Enter title:" << endl;
       cin.ignore();
       getline(cin, title);
-      h.deleteMul(title);
+      if(hash == 1){
+        h.deleteSum(word);
+      }
+      else if(hash == 2){
+        h.deleteMul(word);
+      }
+      else if(hash == 3){
+        h.deleteRandSum(word);
+      }
+      else if(hash == 4){
+        h.deleteScrabble(word);
+      }
+      else{
+        cout << "You cannot delete from SHA1" << endl;
+      }
     }
     else if (C == 3)
     {

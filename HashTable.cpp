@@ -460,3 +460,33 @@ void HashTable::insertScrabble(string name)
     elk -> previous = current;
   }
 }
+
+void HashTable::deleteScrabble(std::string name)
+{
+  HashElem *current = NULL;
+  HashElem *toDel = NULL;
+  int index = hashScrabble(name, tableSize);
+  current = hashTable[index];
+  if (current == NULL)
+  {
+    return;
+  }
+  if (current -> title == name)
+  {
+    current = NULL;
+    delete current;
+  }
+  else
+  {
+    while (current -> title != name && current -> next != NULL)
+    {
+      current = current -> next;
+    }
+    if (current -> title == name)
+    {
+      current -> previous -> next = current -> next;
+      current -> next -> previous = current -> previous;
+      delete current;
+    }
+  }
+}
