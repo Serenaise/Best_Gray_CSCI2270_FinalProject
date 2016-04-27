@@ -97,7 +97,8 @@ int main()
                 h.insertScrabble(word);
               }
               else{
-                h.SHA1(word);
+                uint32_t array[5];
+                h.SHA1(word, array);
               }
             }
             fclose(file);
