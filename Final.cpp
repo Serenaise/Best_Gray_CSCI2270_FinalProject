@@ -51,7 +51,7 @@ int main()
             h.insertMul(title);
           }
           else if(hash == 3){
-            //h.insertRandSum(title);
+            h.insertRandSum(title);
           }
           else if(hash == 4){
             h.insertScrabble(title);
@@ -67,7 +67,7 @@ int main()
          printf("\n");*/
           }
           //uint32_t res[5];
-          h.insertSum(title); //Not thoroughly tested, but it seems to work..
+          //h.insertSum(title); //Not thoroughly tested, but it seems to work..
           //h.SHA1(title,res);
           //cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
           cout << "Number of collisions: " << h.getCollisions() << endl;
@@ -91,13 +91,13 @@ int main()
                 h.insertMul(word);
               }
               else if(hash == 3){
-                //h.insertRandSum(title);
+                h.insertRandSum(word);
               }
               else if(hash == 4){
                 h.insertScrabble(word);
               }
               else{
-                //h.SHA1(title);
+                h.SHA1(word);
               }
             }
             fclose(file);
