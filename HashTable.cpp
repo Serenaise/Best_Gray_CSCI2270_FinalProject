@@ -112,6 +112,36 @@ void HashTable::insertMul(string name)
     elk -> previous = current;
   }
 }
+void HashTable::deleteRandSum(std::string name)
+{
+  HashElem *current = NULL;
+  HashElem *toDel = NULL;
+  int index = hashRandSum(name, tableSize);
+  current = hashTable[index];
+  if (current == NULL)
+  {
+    return;
+  }
+  if (current -> title == name)
+  {
+    cout << "Here" << endl;
+    current = NULL;
+    delete current;
+  }
+  else
+  {
+    while (current -> title != name && current -> next != NULL)
+    {
+      current = current -> next;
+    }
+    if (current -> title == name)
+    {
+      current -> previous -> next = current -> next;
+      current -> next -> previous = current -> previous;
+      delete current;
+    }
+  }
+}
 void HashTable::deleteSum(std::string name)
 {
   HashElem *current = NULL;
