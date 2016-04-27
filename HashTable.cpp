@@ -220,7 +220,7 @@ void HashTable::findSum(std::string name)
 void HashTable::findMul(std::string name)
 {
   HashElem *current = NULL;
-  int index = hashMul(name, tableSize);
+  int index = hashMultiply(name, tableSize);
   current = hashTable[index];
   while (current -> title != name)
   {
