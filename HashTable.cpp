@@ -56,6 +56,26 @@ void HashTable::insertSum(string name)
     elk -> previous = current;
   }
 }
+void HashTable::insertRandSum(std::string name)
+{
+  int index = hashRandSum(name, tableSize);
+  HashElem *current;
+  HashElem *elk = new HashElem(name);
+  if (hashTable[index] == NULL)
+  {
+    hashTable[index] = elk;
+  }
+  else
+  {
+    current = hashTable[index];
+    while (current -> next != NULL)
+    {
+      current = current -> next;
+    }
+    current -> next = elk;
+    elk -> previous = current;
+  }
+}
 void HashTable::insertMul(string name)
 {
   int index = hashMultiply(name, tableSize);
@@ -334,11 +354,16 @@ void HashTable::SHA1(string message, uint32_t hh[5])
       h4 = h4 + e;
     }
     //hh[5];
-    hh[0] = htobe32(h0);
+    /*hh[0] = htobe32(h0);
     hh[1] = htobe32(h1);
     hh[2] = htobe32(h2);
     hh[3] = htobe32(h3);
-    hh[4] = htobe32(h4);
+    hh[4] = htobe32(h4);*/
+    hh[0] = h0;
+    hh[1] = h1;
+    hh[2] = h2;
+    hh[3] = h3;
+    hh[4] = h4;
   }
 }
 /*Also works fine*/
