@@ -8,7 +8,16 @@ We made a hash table with multiple hash functions. The user chooses which hash f
 How To Run
 Download/ Pull the Makefile, Final.cpp, HashTable.cpp, and HashTable.h and run the make file ('make Final' in the Linux terminal emulator).  The program should prompt the user for input and the user should provide the requested information via the via the infreface with the terminal (that is, the user puts input into the terminal).
 
-Collaborators: Katherine Best and Kathryn Gray
+Dependencies
+None
 
-Notes:
+System Requirements
 May only work on Linux.  Has not been tested on Mac or Windows.
+
+Group Members
+Katherine Best and Kathryn Gray
+
+Open Issues/Bugs
+Collision count remains unchanged when items are deleted
+
+
