@@ -19,5 +19,5 @@ Katherine Best and Kathryn Gray
 
 Open Issues/Bugs
 Collision count remains unchanged when items are deleted
-
+The find code should check for valid input and the delete code may not be working correctly.
 
