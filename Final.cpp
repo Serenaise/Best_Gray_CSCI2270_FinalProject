@@ -8,13 +8,16 @@ using namespace std;
 
 int DEFAULT_TABLESIZE = 10;
 int menu();
+int HashMenu();
 
 int main()
 {
   int C, year;
   bool quit = false;
   HashTable h = HashTable(DEFAULT_TABLESIZE);
+  cout << "declared table" << endl;
   string title;
+  int hash = 1;
   //h.initToNull();
   while (!quit)
   {
@@ -39,8 +42,23 @@ int main()
 
           cin.ignore();
           getline(cin, title);
+          if(hash == 1){
+            h.insertSum(title);
+          }
+          else if(hash == 2){
+            h.insertMul(title);
+          }
+          else if(hash == 3){
+            //h.insertRandSum(title);
+          }
+          else if(hash == 4){
+            h.insertScrabble(title);
+          }
+          else{
+            //h.SHA1(title);
+          }
           //uint32_t res[5];
-          h.insertScrabble(title); //Not thoroughly tested, but it seems to work..
+          //h.insertSum(title); //Not thoroughly tested, but it seems to work..
           //h.SHA1(title,res);
           //cout << hex << res[0] << hex << res[1] << hex << res[2] << hex << res[3] << hex << res[4] << endl;
           cout << "Number of collisions: " << h.getCollisions() << endl;
@@ -56,7 +74,22 @@ int main()
             string word;
             ifstream fin(filename);
             while(fin >> word){
-              h.insertScrabble(word);
+              //h.insertScrabble(word);
+              if(hash == 1){
+                h.insertSum(word);
+              }
+              else if(hash == 2){
+                h.insertMul(word);
+              }
+              else if(hash == 3){
+                //h.insertRandSum(title);
+              }
+              else if(hash == 4){
+                h.insertScrabble(word);
+              }
+              else{
+                //h.SHA1(title);
+              }
             }
             fclose(file);
             cout << "Number of collisions:" << h.getCollisions() << endl;
@@ -105,6 +138,7 @@ int main()
     }
     else if (C == 6){
       cout << "Choose a new hash function.  This will remove everything from the current array" << endl;
+      hash = HashMenu();
     }
     else if (C == 7)
     {
@@ -127,6 +161,29 @@ int menu()
   cout << "7. Quit" << endl;
   //cin >> choice;
   if(cin >> choice && choice <= 7 && choice > 0){
+  return choice;
+}
+else{
+  cout << "Not a valid input.  Please input the number next to the menu item you wish to select" << endl;
+  cin.clear();
+  while (cin.get() != '\n') ;
+}
+
+  //return choice;
+}
+
+int HashMenu()
+{
+  int choice;
+  cout << "======Hash Menu======" << endl;
+  cout << "1. Sum" << endl;
+  cout << "2. Multiplication" << endl;
+  cout << "3. Random" << endl;
+  cout << "4. Scrabble" << endl;
+  cout << "5. SHA1 (note: this will not create a hash table)" << endl;
+  cout << "6. Quit" << endl;
+  //cin >> choice;
+  if(cin >> choice && choice <= 6 && choice > 0){
   return choice;
 }
 else{
