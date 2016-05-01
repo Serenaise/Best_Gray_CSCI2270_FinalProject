@@ -46,8 +46,12 @@ void HashTable::initToNull()
   }
 }
 void HashTable::setTableSize(int newsize){
-  tableSize = newsize;
-  initToNull();
+  if(newsize <= 0){
+    cout<<"I'm sorry that is not a valid table size."<<endl;
+  }else{
+    tableSize = newsize;
+    initToNull();
+  }
 }
 void HashTable::insertSum(string name)
 {
